@@ -1,9 +1,8 @@
 def WordSearch(length, s, subs):
 	resultList = []
 	word = ''
-	subWord = ''
+	comparisonList = ''
 	wordsList = []
-	count = 0
 	subsWasFound = False
 
 	while (len(s) > length):
@@ -29,10 +28,10 @@ def WordSearch(length, s, subs):
 	wordsList.append(s)
 
 	for i in range(len(wordsList)):
-		subWord = wordsList[i].split()
+		comparisonList = wordsList[i].split()
 
-		for j in range(len(subWord)):
-			if subWord[j] == subs:
+		for j in range(len(comparisonList)):
+			if comparisonList[j] == subs:
 				subsWasFound = True
 
 		if subsWasFound:
