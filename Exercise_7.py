@@ -1,37 +1,44 @@
 def WordSearch(length, s, subs):
 	resultList = []
 	word = ''
+	subWord = ''
 	wordsList = []
 	count = 0
+	subsWasFound = False
 
-	for i in range(len(s)):
-		if count < length:
-			if s[i] == ' ':
-				#word += s[i]
-				count = 0
-				wordsList.append(word)
-				word = ''
+	while (len(s) > length):
+		lastSpaceIndex = 0
+		if s[length-1] != ' ':
+			for i in range(length):
+				if s[i] == ' ':
+					lastSpaceIndex = i
+			if lastSpaceIndex > 0:
+				word = s[:lastSpaceIndex]
 			else:
-				word += s[i]
-				count += 1
+				word = s[:length]
 		else:
-			if s[i] == ' ':
-				#word += s[i]
-				wordsList.append(word)
-				word = ''
-				count = 0
-			else:
-				wordsList.append(word)
-				word = s[i]
-				count = 1
-	wordsList.append(word)
+			word = s[:length]
+
+		wordsList.append(word)
+
+		if word in s:
+			s = s.replace(word, '')
+		if s[0] == ' ':
+			s = s[1:]
+
+	wordsList.append(s)
 
 	for i in range(len(wordsList)):
-		if subs == wordsList[i]:
+		subWord = wordsList[i].split()
+
+		for j in range(len(subWord)):
+			if subWord[j] == subs:
+				subsWasFound = True
+
+		if subsWasFound:
 			resultList.append(1)
 		else:
 			resultList.append(0)
-
-	#print(wordsList)
+		subsWasFound = False
 
 	return(resultList)
