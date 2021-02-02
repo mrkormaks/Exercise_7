@@ -18,6 +18,9 @@ def WordSearch(length, s, subs):
 		else:
 			word = s[:length]
 
+		if s[length] == ' ':
+			word = s[:length]
+
 		wordsList.append(word)
 
 		if word in s:
